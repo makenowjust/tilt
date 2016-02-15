@@ -1,0 +1,16 @@
+name: tilt
+version: 0.1.0
+
+description: |
+  TILT Is Loader of Template
+
+authors:
+  - TSUYUSATO Kitsune <make.just.on@gmail.com>
+
+license: MIT
+
+development_dependencies:
+  crustache:
+    github: MakeNowJust/crustache
+  slang:
+    github: jeromegn/slang
