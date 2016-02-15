@@ -86,7 +86,7 @@ require "tilt"
 # Render `filename` by `String#format`
 # It is TILT compatible template engine.
 macro embed_fmt(filename, io, map = nil)
-  {{ io }} << sprintf File.read({{ filename }}), {{ map }}
+  {{ io.id }} << sprintf({{ `cat #{filename}`.stringify }}, {{ map }})
 end
 
 # Render with `fmt` template engine

@@ -6,5 +6,5 @@ require "crustache"
 require "slang"
 
 macro embed_fmt(filename, io, model = nil)
-  {{ io.id }} << sprintf File.read({{ filename }}), {{ model }}
+  {{ io.id }} << sprintf({{ `cat #{filename}`.stringify }}, {{ model }})
 end
