@@ -2,6 +2,9 @@
 
 TILT Is Loader of Template. It is generalized template engine interface.
 
+[![Build Status](https://travis-ci.org/MakeNowJust/tilt.svg?branch=master)](https://travis-ci.org/MakeNowJust/tilt)
+
+
 ## Installation
 
 Add this to your application's `shard.yml`:
