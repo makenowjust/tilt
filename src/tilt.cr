@@ -1,4 +1,6 @@
 module TILT
+  VERSION = "1.0.0"
+
   # :nodoc:
   INTERNAL = {
     default: "ecr",
