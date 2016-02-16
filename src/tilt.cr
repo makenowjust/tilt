@@ -26,9 +26,9 @@ module TILT
     end
   end
 
-  macro file(filename)
+  macro file(filename, *args)
     def to_s(__tilt_io__)
-      ::TILT.embed {{ filename }}, __tilt_io__
+      ::TILT.embed({{ filename }}, __tilt_io__, {{ *args }})
     end
   end
 

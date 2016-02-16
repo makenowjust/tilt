@@ -6,6 +6,22 @@ require "./spec_helper"
   end
 {% end %}
 
+{% for ext in %w(mustache fmt).map(&.id) %}
+  class FileModel{{ ext.camelcase }} < Hash(String, String?)
+    def initialize(@name); super() end
+
+    def has_key?(key)
+      key == "name"
+    end
+
+    def [](key)
+      key == "name" ? @name : nil
+    end
+
+    TILT.file("spec/fixture/{{ext}}/model.{{ext}}", self)
+  end
+{% end %}
+
 describe TILT do
   describe "embed" do
     {% for ext in %w(ecr mustache slang fmt).map(&.id) %}
@@ -59,6 +75,12 @@ describe TILT do
     {% for ext in %w(ecr mustache slang fmt).map(&.id) %}
       it "render the {{ext}} template" do
         File{{ ext.camelcase }}.new("TILT").to_s.should eq "Hello, TILT!\n"
+      end
+    {% end %}
+
+    {% for ext in %w(mustache fmt).map(&.id) %}
+      it "render the {{ext}} template" do
+        FileModel{{ ext.camelcase }}.new("TILT").to_s.should eq "Hello, TILT!\n"
       end
     {% end %}
   end
