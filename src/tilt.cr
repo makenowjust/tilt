@@ -39,5 +39,8 @@ module TILT
   macro register(extension, embed_code)
     {% INTERNAL[:engine][extension] = embed_code.stringify %}
   end
+
+  macro alias(extension, original)
+    {% INTERNAL[:engine][extension] = INTERNAL[:engine][original] || "embed_#{original.id}" %}
   end
 end

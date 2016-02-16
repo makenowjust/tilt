@@ -101,4 +101,11 @@ describe TILT do
       TILT.render("spec/fixture/hello.register", { "name" => "TILT" }).should eq "Hello, TILT!\n"
     end
   end
+
+  describe "alias" do
+    it "alias template engine"do
+      TILT.alias "alias", "fmt"
+      TILT.render("spec/fixture/hello.alias", { "name" => "TILT" }).should eq "Hello, TILT!\n"
+    end
+  end
 end
