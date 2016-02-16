@@ -36,7 +36,8 @@ module TILT
     {% INTERNAL[:default] = engine %}
   end
 
-  macro register(extension, embed)
-    {% INTERNAL[:engine][extension] = embed.stringify %}
+  macro register(extension, embed_code)
+    {% INTERNAL[:engine][extension] = embed_code.stringify %}
+  end
   end
 end
