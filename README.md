@@ -73,6 +73,10 @@ puts TILT.render("hello.mustache", { "name" => "MakeNowJust" })
 
 # Add your template engine
 TILT.register "html", embed_ecr
+
+
+# Add alias
+TILT.alias "html", "ecr"
 ```
 
 ### For developer of template engine
@@ -87,7 +91,6 @@ Note: This spec is unstable, it is probably changed.
 require "tilt"
 
 # Render `filename` by `String#format`
-# It is TILT compatible template engine.
 macro embed_fmt(filename, io, map = nil)
   {{ io.id }} << sprintf({{ `cat #{filename}`.stringify }}, {{ map }})
 end
