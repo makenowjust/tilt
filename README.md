@@ -3,6 +3,8 @@
 TILT Is Loader of Template. It is generalized template engine interface.
 
 [![Build Status](https://travis-ci.org/MakeNowJust/tilt.svg?branch=master)](https://travis-ci.org/MakeNowJust/tilt)
+[![Dependency Status](https://shards.rocks/badge/github/MakeNowJust/tilt/status.svg)](https://shards.rocks/github/MakeNowJust/tilt)
+[![devDependency Status](https://shards.rocks/badge/github/MakeNowJust/tilt/dev_status.svg)](https://shards.rocks/github/MakeNowJust/tilt)
 
 
 ## Installation
