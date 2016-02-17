@@ -15,9 +15,10 @@ module Tilt
       {% extension = INTERNAL[:default] %}
       {% filename = filename + "." + extension %}
     {% end %}
-    {% embed = INTERNAL[:engine][extension] || "embed_#{extension.id}" %}
+    {% embed = INTERNAL[:engine][extension] ||
+         "::#{(extension.size >= 4 ? extension.camelcase : extension.upcase).id}.embed" %}
 
-    ::{{ embed.id }}({{ filename }}, {{ io_name.is_a?(StringLiteral) ? io_name : io_name.stringify }}, {{ *args }})
+    {{ embed.id }}({{ filename }}, {{ io_name.id }}, {{ *args }})
   end
 
   macro render(filename, *args)
@@ -41,6 +42,8 @@ module Tilt
   end
 
   macro alias(extension, original)
-    {% INTERNAL[:engine][extension] = INTERNAL[:engine][original] || "embed_#{original.id}" %}
+    {% embed = INTERNAL[:engine][original] ||
+               "::#{original.size >= 4 ? original.camelcase.id : original.upcase.id}.embed" %}
+    {% INTERNAL[:engine][extension] = embed %}
   end
 end

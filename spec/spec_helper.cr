@@ -5,6 +5,9 @@ require "ecr/macros"
 require "crustache"
 require "slang"
 
-macro embed_fmt(filename, io, model = nil)
-  {{ io.id }} << sprintf({{ `cat #{filename}`.stringify }}, {{ model }})
+module FMT
+  # Render `filename` by `sprintf`
+  def self.embed(filename, io, arg = nil)
+    io << sprintf(File.read(filename), arg)
+  end
 end

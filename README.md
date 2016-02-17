@@ -83,18 +83,19 @@ Tilt.alias "html", "ecr"
 
 ### For developer of template engine
 
-  1. You could define `embed_<extension>` macro in global space. (`<extension>` is your template engine's filename extension.)
-  2. `embed_<extension>` requires two arguments at least, the first argument is `filename`, and the second argument is IO object's name.
-  3. Then, `TILT` detects your template engine, and using it when `filename`'s extension is `<extension>`.
+This is the process of `Tilt.embed`.
 
-Note: This spec is unstable, it is probably changed.
+  1. There are `<FilenameExtension>.embed` macro in global space. (`<FilenameExtension>` is your template engine's filename extension. When it is less then 4 character, it should be upper case. Otherwise, when it is more than or equal 4 character,it should be camel-case.)
+  2. When `Tilt.embed(filename)` is called, `Tilt` calls `<FilenameExtension>.embed` or registered engine if `filename` has extension. Otherwise, `Tilt` calls default engine.
 
 ```crystal
 require "tilt"
 
-# Render `filename` by `String#format`
-macro embed_fmt(filename, io, map = nil)
-  {{ io.id }} << sprintf({{ `cat #{filename}`.stringify }}, {{ map }})
+module FMT
+  # Render `filename` by `sprintf`
+  def self.embed(filename, io, arg = nil)
+    io << sprintf(File.read(filename), arg)
+  end
 end
 
 # Render with `FMT` template engine

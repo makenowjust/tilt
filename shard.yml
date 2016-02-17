@@ -12,7 +12,7 @@ license: MIT
 development_dependencies:
   crustache:
     github: MakeNowJust/crustache
-    version: 2.1.0
+    branch: master
   slang:
     github: jeromegn/slang
-    version: 0.1.6
+    branch: master
