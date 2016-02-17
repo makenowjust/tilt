@@ -1,3 +1,8 @@
+# v2.0.0 (2016-02-17)
+
+- Changes
+  * Fixed the rule to look up template engine
+
 # v1.1.0 (2016-02-16)
 
 - Features
