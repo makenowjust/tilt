@@ -1,4 +1,4 @@
-module TILT
+module Tilt
   VERSION = "1.1.0"
 
   # :nodoc:
@@ -22,13 +22,13 @@ module TILT
 
   macro render(filename, *args)
     ::String.build do |__tilt_io__|
-      ::TILT.embed({{ filename }}, __tilt_io__, {{ *args }})
+      ::Tilt.embed({{ filename }}, __tilt_io__, {{ *args }})
     end
   end
 
   macro file(filename, *args)
     def to_s(__tilt_io__)
-      ::TILT.embed({{ filename }}, __tilt_io__, {{ *args }})
+      ::Tilt.embed({{ filename }}, __tilt_io__, {{ *args }})
     end
   end
 

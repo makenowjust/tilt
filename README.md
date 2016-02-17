@@ -1,6 +1,6 @@
 # tilt
 
-TILT Is Loader of Template. It is generalized template engine interface.
+Tilt Is Loader of Template. It is generalized template engine interface.
 
 [![Build Status](https://travis-ci.org/MakeNowJust/tilt.svg?branch=master)](https://travis-ci.org/MakeNowJust/tilt)
 [![Dependency Status](https://shards.rocks/badge/github/MakeNowJust/tilt/status.svg)](https://shards.rocks/github/MakeNowJust/tilt)
@@ -39,22 +39,22 @@ require "slang"     # jeromegn/slang
 
 # Render some templates
 
-puts TILT.render "hello.ecr"      # render as "ecr"
-puts TILT.render "hello.mustache" # render as "mustache" (using crustache)
-puts TILT.render "hello.slang"    # render as "slang"
+puts Tilt.render "hello.ecr"      # render as "ecr"
+puts Tilt.render "hello.mustache" # render as "mustache" (using crustache)
+puts Tilt.render "hello.slang"    # render as "slang"
 
 
 # Set the default template engine
 
-TILT.default_engine "ecr"
+Tilt.default_engine "ecr"
 
-puts TILT.render "hello" # render as "ecr" although without extension
+puts Tilt.render "hello" # render as "ecr" although without extension
 
 
 # Other APIs
 
-# It is like `TILT.render`, but it requires IO object then renders to this.
-puts String.build { |io| TILT.embed "hello", io }
+# It is like `Tilt.render`, but it requires IO object then renders to this.
+puts String.build { |io| Tilt.embed "hello", io }
 
 
 # Load specified template file, and define `#to_s` method to render this file.
@@ -63,22 +63,22 @@ class HelloView
 
   getter name
 
-  TILT.file "hello"
+  Tilt.file "hello"
 end
 
-puts HelloView.new("MakeNowJust").to_s
+puts HelloView.new("Tilt").to_s
 
 
 # Passing additional arguments to the template if the engine supported
-puts TILT.render("hello.mustache", { "name" => "MakeNowJust" })
+puts Tilt.render("hello.mustache", { "name" => "Tilt" })
 
 
 # Add your template engine
-TILT.register "html", embed_ecr
+Tilt.register "html", ECR.embed
 
 
 # Add alias
-TILT.alias "html", "ecr"
+Tilt.alias "html", "ecr"
 ```
 
 ### For developer of template engine
@@ -97,11 +97,11 @@ macro embed_fmt(filename, io, map = nil)
   {{ io.id }} << sprintf({{ `cat #{filename}`.stringify }}, {{ map }})
 end
 
-# Render with `fmt` template engine
-puts TILT.render "hello.fmt", { "name" => "MakeNowJust" }
+# Render with `FMT` template engine
+puts Tilt.render "hello.fmt", { "name" => "Tilt" }
 ```
 
-If you create new template engine supporting TILT, I welcome your [Pull Request](https://github.com/MakeNowJust/tilt/pulls) to add it to supported engine list.
+If you create new template engine supported Tilt, I welcome your [Pull Request](https://github.com/MakeNowJust/tilt/pulls) to add it to supported engine list. (And, I wanna you add specs for this engine.)
 
 
 ## Development
